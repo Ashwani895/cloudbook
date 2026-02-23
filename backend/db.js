@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-
-const mongoURI = "mongodb://localhost:27017/iNotebook";
+require('dotenv').config();
 
 const connectToMongo = async () => {
   try {
-    await mongoose.connect(mongoURI);
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection failed:", error);
-    process.exit(1); // Exit if connection fails
+    process.exit(1);
   }
 };
 
