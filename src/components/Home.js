@@ -8,27 +8,36 @@ const Home = () => {
 
   const getUser = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/auth/getuser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      });
+      const response = await fetch(
+        "https://cloudbook-1b70.onrender.com/api/auth/getuser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+
       const data = await response.json();
-      setUserName(data.name); // Assuming the API returns a "name" field
+
+      if (data.name) {
+        setUserName(data.name);
+      }
     } catch (error) {
       console.error("Failed to fetch user", error);
     }
   };
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
       navigate("/login");
     } else {
       getUser();
     }
-  }, []);
+  }, [navigate]); // ✅ added navigate dependency
 
   return (
     <>

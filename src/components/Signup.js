@@ -21,7 +21,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/auth/createuser`, {
+      const response = await fetch(`http://cloudbook-1b70.onrender.com/api/auth/createuser`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
