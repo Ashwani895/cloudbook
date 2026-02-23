@@ -8,7 +8,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`http://cloudbook-1b70.onrender.com/api/auth/login`, {
+    const response = await fetch(`https://cloudbook-1b70.onrender.com/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
